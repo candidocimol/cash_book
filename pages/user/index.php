@@ -3,6 +3,7 @@ if(isset($_SESSION['user'])){
     if(isset($action)){
         if($action=="logout"){
             unset($_SESSION['user']);
+            
             header("Location:".URL_BASE);
         }
     }else{
