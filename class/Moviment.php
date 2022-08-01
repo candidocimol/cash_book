@@ -39,7 +39,7 @@ class Moviment{
      * Method save
      * @access public
      * @param Array $data
-     * @return int/boolean id moviment ou false;
+     * @return Array $return
      */
     public function save($data){
         $bd=BD::getInstance();
@@ -65,7 +65,14 @@ class Moviment{
         return $return;
     }
 
-
+    /**
+     * Method getMoviments
+     * @access public
+     * @param date $dateStart
+     * @param date $dateEnd
+     * @param string $type
+     * @return Array id moviment ou false;
+     */
     public function getMoviments($dateStart=null, $dateEnd=null, $type=null){
         $bd=BD::getInstance();
         $sql = "SELECT *
@@ -100,5 +107,35 @@ class Moviment{
         }
         return $return;
         
+    }
+
+    /**
+     * Method getMoviments
+     * @access public
+     * @return Number ;
+     */
+    public function getCashBalance(){
+        $bd=BD::getInstance();
+        $sql = "SELECT sum(value) AS input FROM moviment WHERE type='input'";
+        $stmt = $bd->prepare( $sql );
+        $result=$stmt->execute();
+        $input=0;
+        if($result){
+            if($stmt->rowCount() >0){
+                $moviment=$stmt->fetch(PDO::FETCH_ASSOC);
+                $input=$moviment['input'];
+            }
+        }
+        $sql = "SELECT sum(value) AS output FROM moviment WHERE type='output'";
+        $stmt = $bd->prepare( $sql );
+        $result=$stmt->execute();
+        $output=0;
+        if($result){
+            if($stmt->rowCount() >0){
+                $moviment=$stmt->fetch(PDO::FETCH_ASSOC);
+                $output=$moviment['output'];
+            }
+        }
+       return $input - $output;
     }
 }

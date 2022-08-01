@@ -5,7 +5,7 @@ $mes=date("m");
 
 $moviment=new Moviment();
 $moviments=$moviment->getMoviments();
-
+$cash_balance=$moviment->getCashBalance();
 ?>
 <main>
 <div id="header-moviment">
@@ -13,7 +13,7 @@ $moviments=$moviment->getMoviments();
         <a class="btn btn-primary" href="<?php echo URL_BASE ?>?page=moviments&action=add"> Add </a>
     </div>
     <div class="input-group">
-        <label class="input-group-text" for="inputGroupSelect01">Ano</label>
+        <label class="input-group-text" for="inputGroupSelect01">Year</label>
         <select class="form-select" id="inputGroupSelect01">
             <?php  
                 echo "<option value='$data' selected>$data</option>";
@@ -28,7 +28,7 @@ $moviments=$moviment->getMoviments();
         </select>
     </div>
     <div class="input-group">
-        <label class="input-group-text" for="inputGroupSelect01">Mês</label>
+        <label class="input-group-text" for="inputGroupSelect01">Month</label>
         <select class="form-select" id="inputGroupSelect01">
             <?php  
                 echo "<option value='$mes'>Mes Atual </option>";
@@ -49,8 +49,8 @@ $moviments=$moviment->getMoviments();
         </select>
     </div>
     <div class="input-group">
-        <span class="input-group-text" id="basic-addon1">cash balance</span>
-        <input type="text" class="form-control" id="input-cash-balance">
+        <span class="input-group-text" id="basic-addon1">Cash balance</span>
+        <input type="text" class="form-control" id="input-cash-balance" value="R$<?php echo $cash_balance?>" disabled>
     </div>
 </div>
 <table class="table">
@@ -78,10 +78,8 @@ $moviments=$moviment->getMoviments();
         }else{
             echo "<td> - </td><td> * </td>";
         }
-
         echo "</tr>";
     }
-
     ?>
   </tbody>
 <table>
