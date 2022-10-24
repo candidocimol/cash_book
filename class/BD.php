@@ -15,6 +15,6 @@ class BD{
             self::$instance->setAttribute(PDO::ATTR_ORACLE_NULLS,PDO::NULL_EMPTY_STRING);
         }
 
-        return self::$instance;
+        return self::$instance;  
     }
 }

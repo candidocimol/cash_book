@@ -8,8 +8,12 @@
         }
         unset($_SESSION['msgs']);
     }
-  ?>  
+  ?>
+  
+  
 </div>
 <script>
-    setTimeout(()=>{document.querySelector('#msg').innerHTML=''},3000)
+    setTimeout(()=>{document.querySelector('#msg')
+    .innerHTML=''},
+    3000)
 </script>

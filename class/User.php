@@ -35,7 +35,7 @@ class User{
      * @access private
      */
     private $profile;
-
+ 
     /**
      * Method setUser
      * @param int $idUser
@@ -66,9 +66,13 @@ class User{
      * @param String $password
      * @return boolean
      */
-    public function login($email, $password){
+    public static function login($email, $password){
         $bd=BD::getInstance();
-        $sql = "SELECT id, name, email FROM user WHERE email=:email AND password=:pass"; 
+        $sql = "SELECT id, name, email 
+        FROM user 
+        WHERE email=:email 
+        AND password=:pass"; 
+
         $stmt = $bd->prepare( $sql );
         $stmt->bindParam( ':email', $email );
         $stmt->bindParam( ':pass', $password);

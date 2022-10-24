@@ -1,1 +1,0 @@
-SELECT * FROM cash_book.moviment;
